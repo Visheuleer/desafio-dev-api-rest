@@ -12,7 +12,7 @@ app.include_router(account_holder_router)
 if __name__ == "__main__":
     import uvicorn
     Base.metadata.create_all(bind=db_connection.engine)
-    uvicorn.run(app)
+    uvicorn.run(app, host='0.0.0.0', port=8080)
 
 
 

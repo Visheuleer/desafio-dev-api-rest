@@ -8,6 +8,17 @@ services:
       - MYSQL_DATABASE=${DB_NAME}
     volumes:
       - mysql_data:/var/lib/mysql
+    container_name: mysql-server
+
+  api-dock:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - '8080:8080'
+    depends_on:
+      - mysql
+    container_name: api-dock
 volumes:
   mysql_data:
 
