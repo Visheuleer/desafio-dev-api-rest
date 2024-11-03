@@ -9,6 +9,6 @@ class AccountHolder(Base):
 
     id = Column(CHAR(36), primary_key=True, default=lambda: str(uuid.uuid4()), index=True)
     name = Column(String(255), nullable=False, index=True)
-    document = Column(String(14), nullable=False, unique=True, index=True)
+    document = Column(String(11), nullable=False, unique=True, index=True)
 
     wallet = relationship("Wallet", back_populates="owner", uselist=False)
