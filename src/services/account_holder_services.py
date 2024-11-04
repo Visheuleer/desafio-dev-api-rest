@@ -1,4 +1,4 @@
-class AccountHolderService:
+class AccountHolderServices:
     def __init__(self, document):
         self._document = document
         self._document_nine_digits = self._document[:9]

@@ -1,8 +1,7 @@
 from fastapi import APIRouter, HTTPException, status
 from repositories import wallet_repository, account_holder_repository
 from schemas import WalletSchema
-#from services import AccountHolderService
-import random
+from services import WalletServices
 
 
 router = APIRouter(prefix='/wallet', tags=['Wallet'])
@@ -27,13 +26,6 @@ def register_wallet(document: str):
         raise HTTPException(status_code=status.HTTP_409_CONFLICT,
                             detail=f'CPF "{document}" já tem uma conta.')
 
-
-    wallet = WalletSchema(
-        account_holder_id=id_account_holder,
-        branch_code='0001',
-        account_number=''.join(str(num) for num in random.choices(range(0, 9), k=8)),
-        balance=0.0,
-        status=1
-    )
+    wallet = WalletServices(id_account_holder).generate_wallet()
     wallet_repository.save_wallet(wallet.dict())
     return wallet

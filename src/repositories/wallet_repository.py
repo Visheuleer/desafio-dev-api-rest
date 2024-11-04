@@ -1,5 +1,6 @@
+from sqlalchemy.dialects.mysql import insert
 from mysqldb import db_connection
-from models import Wallet
+from models import Wallet, WalletSequence
 
 
 class WalletRepository:
@@ -14,6 +15,14 @@ class WalletRepository:
         ).first()
         session.close()
         return wallet
+
+    @staticmethod
+    def generate_account_number():
+        session = db_connection.db_session()
+        result = session.execute(insert(WalletSequence).values())
+        session.commit()
+        session.close()
+        return f"{result.inserted_primary_key[0]:08}"
 
     @staticmethod
     def save_wallet(wallet):
