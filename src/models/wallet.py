@@ -1,4 +1,4 @@
-from sqlalchemy import Column, CHAR, String, Float, ForeignKey
+from sqlalchemy import Column, CHAR, String, Float, Integer,ForeignKey
 from sqlalchemy.orm import relationship
 from models import Base
 import uuid
@@ -12,6 +12,7 @@ class Wallet(Base):
     branch_code = Column(String(4), nullable=False, unique=True, index=True)
     account_number = Column(String(8), nullable=False, unique=True, index=True)
     balance = Column(Float, nullable=False, index=True)
+    status = Column(Integer, nullable=False, default=1, index=True)
 
     owner = relationship("AccountHolder", back_populates="wallet")
     transactions = relationship("Transaction", back_populates="wallet")

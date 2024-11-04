@@ -6,4 +6,5 @@ class WalletSchema(BaseModel):
     branch_code: str
     account_number: str
     balance: float
+    status: int
 
