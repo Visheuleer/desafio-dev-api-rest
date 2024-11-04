@@ -1,8 +1,5 @@
-from sqlalchemy.dialects.mysql import insert
-from models import WalletSequence
 from repositories import wallet_repository
 from schemas import WalletSchema
-from mysqldb import db_connection
 
 class WalletServices:
     def __init__(self, id_account_holder):
