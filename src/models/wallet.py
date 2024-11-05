@@ -1,3 +1,5 @@
+from email.policy import default
+
 from sqlalchemy import Column, CHAR, String, Float, Integer,ForeignKey
 from sqlalchemy.orm import relationship
 from models import Base
@@ -17,6 +19,7 @@ class Wallet(Base):
     account_number = Column(String(8), autoincrement=True, nullable=False, unique=True, index=True)
     balance = Column(Float, nullable=False, index=True)
     status = Column(Integer, nullable=False, default=1, index=True)
+    limit = Column(Float, nullable=False, default=2000, index=True)
 
     owner = relationship("AccountHolder", back_populates="wallet")
     transactions = relationship("Transaction", back_populates="wallet")

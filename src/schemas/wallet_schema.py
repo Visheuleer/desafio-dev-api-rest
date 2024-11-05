@@ -7,4 +7,5 @@ class WalletSchema(BaseModel):
     account_number: str
     balance: float
     status: int
+    limit: float
 
