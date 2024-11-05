@@ -6,7 +6,7 @@ class WalletServices:
         self._id_account_holder = id_account_holder
 
 
-    def generate_wallet(self):
+    def generate_wallet(self) -> WalletSchema:
         return WalletSchema(
         account_holder_id=self._id_account_holder,
         branch_code='0001',
@@ -15,6 +15,15 @@ class WalletServices:
         status=1
     )
 
+
+    def model_to_schema(self, wallet) -> WalletSchema:
+        return WalletSchema(
+            account_holder_id=self._id_account_holder,
+            branch_code=wallet.branch_code,
+            account_number=wallet.account_number,
+            balance=wallet.balance,
+            status=wallet.status
+        )
 
 
 

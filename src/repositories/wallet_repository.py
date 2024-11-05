@@ -8,7 +8,7 @@ class WalletRepository:
         pass
 
     @staticmethod
-    def find_account_holder_by_account_holder_id(account_holder_id):
+    def find_wallet_by_account_holder_id(account_holder_id):
         session = db_connection.db_session()
         wallet = session.query(Wallet).filter(
             Wallet.account_holder_id == account_holder_id
@@ -28,6 +28,18 @@ class WalletRepository:
     def save_wallet(wallet):
         session = db_connection.db_session()
         session.add(Wallet(**wallet))
+        session.commit()
+        session.close()
+
+    @staticmethod
+    def update_wallet(wallet):
+        session = db_connection.db_session()
+        session.query(Wallet).filter(
+            Wallet.account_holder_id == wallet['account_holder_id']
+        ).update({
+            Wallet.balance: wallet['balance'],
+            Wallet.status: wallet['status']
+        })
         session.commit()
         session.close()
 
