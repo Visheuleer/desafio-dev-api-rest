@@ -1,6 +1,5 @@
 from fastapi import APIRouter, HTTPException, status
 from repositories import wallet_repository, account_holder_repository
-from schemas import WalletSchema
 from services import WalletServices
 
 
