@@ -12,7 +12,8 @@ class WalletServices:
         branch_code='0001',
         account_number=wallet_repository.generate_account_number(),
         balance=0.0,
-        status=1
+        status=1,
+        limit=2000
     )
 
 
@@ -22,7 +23,8 @@ class WalletServices:
             branch_code=wallet.branch_code,
             account_number=wallet.account_number,
             balance=wallet.balance,
-            status=wallet.status
+            status=wallet.status,
+            limit=wallet.limit
         )
 
 

@@ -1,1 +1,2 @@
-from enums.wallet_status import WalletStatus
+from enums.wallet_enum import WalletStatus
+from enums.transaction_enum import TransactionType

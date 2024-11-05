@@ -17,6 +17,15 @@ class WalletRepository:
         return wallet
 
     @staticmethod
+    def find_wallet_by_id(wallet_id):
+        session = db_connection.db_session()
+        wallet = session.query(Wallet).filter(
+            Wallet.id == wallet_id
+        ).first()
+        session.close()
+        return wallet
+
+    @staticmethod
     def generate_account_number():
         session = db_connection.db_session()
         result = session.execute(insert(WalletSequence).values())
