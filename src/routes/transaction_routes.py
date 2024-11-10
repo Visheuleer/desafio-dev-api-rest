@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from fastapi import APIRouter, HTTPException, status
 from schemas import TransactionSchema
 from enums import TransactionType
@@ -8,13 +10,25 @@ from services import TransactionServices, WalletServices
 router = APIRouter(prefix='/transaction', tags=['Transaction'])
 
 
-@router.get('/transaction', status_code=status.HTTP_200_OK)
+@router.get('/{transaction_id}', status_code=status.HTTP_200_OK)
 def get_transaction(transaction_id):
     transaction = transaction_repository.find_transaction_by_id(transaction_id)
     if transaction is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f'Transação não encontrada.')
     return transaction
+
+
+@router.get('/extract/{wallet_id}', status_code=status.HTTP_200_OK)
+def get_extract(wallet_id, start_date:datetime, end_date:datetime):
+    if wallet_repository.find_wallet_by_id(wallet_id) is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f'Conta não encontrada.')
+    transactions = transaction_repository.find_transactions_by_wallet_id_period(wallet_id, start_date, end_date)
+    if not transactions:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f'Não há extrato para o período informado.')
+    return transactions
 
 
 @router.post('/deposit', status_code=status.HTTP_201_CREATED)

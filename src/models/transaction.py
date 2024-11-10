@@ -11,6 +11,6 @@ class Transaction(Base):
     wallet_id = Column(CHAR(36), ForeignKey("wallets.id"), nullable=False)
     amount = Column(Float, nullable=False)
     type = Column(Integer, nullable=False)
-    timestamp = Column(DateTime, default=datetime.datetime.now(datetime.UTC))
+    created_at = Column(DateTime, default=datetime.datetime.now(datetime.UTC))
 
     wallet = relationship("Wallet", back_populates="transactions")
