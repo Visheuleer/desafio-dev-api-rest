@@ -16,7 +16,7 @@ def get_account_holder(document: str):
     return account_holder
 
 
-@router.post('/register', status_code=status.HTTP_201_CREATED)
+@router.post('/', status_code=status.HTTP_201_CREATED)
 def register_account_holder(account_holder: AccountHolderSchema):
     if account_holder_repository.find_account_holder_by_document(account_holder.document):
         raise HTTPException(status_code=status.HTTP_409_CONFLICT,

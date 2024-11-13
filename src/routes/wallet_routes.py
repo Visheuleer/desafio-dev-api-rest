@@ -16,7 +16,7 @@ def get_wallet(document: str):
     return wallet
 
 
-@router.post('/register/{document}', status_code=status.HTTP_201_CREATED)
+@router.post('/{document}', status_code=status.HTTP_201_CREATED)
 def register_wallet(document: str):
     id_account_holder = account_holder_repository.get_account_holder_id_by_document(document)
     if id_account_holder is None:
@@ -31,7 +31,7 @@ def register_wallet(document: str):
     return wallet
 
 
-@router.put('/put/{document}/status', status_code=status.HTTP_204_NO_CONTENT)
+@router.put('/{document}/status', status_code=status.HTTP_204_NO_CONTENT)
 def put_wallet_status(document: str, new_status: int):
     account_holder_id = account_holder_repository.get_account_holder_id_by_document(document)
     if account_holder_id is None:
