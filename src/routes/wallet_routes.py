@@ -45,3 +45,17 @@ def put_wallet_status(document: str, new_status: int):
     wallet = WalletServices(account_holder_id).model_to_schema(wallet)
     wallet_repository.update_wallet(wallet.dict())
     return None
+
+
+@router.delete('/{document}', status_code=status.HTTP_204_NO_CONTENT)
+def delete_wallet(document: str):
+    account_holder_id = account_holder_repository.get_account_holder_id_by_document(document)
+    if account_holder_id is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f'CPF "{document}" não cadastrado ou conta não registrada.')
+    wallet = wallet_repository.find_wallet_by_account_holder_id(account_holder_id)
+    if wallet is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f'Conta não encontrada.')
+    wallet_repository.delete_wallet(account_holder_id)
+    return None
