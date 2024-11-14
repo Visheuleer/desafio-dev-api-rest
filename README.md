@@ -2,7 +2,7 @@
 
 ## Descrição
 
-Este projeto, que visa resolver esse [desafio]("https://github.com/cdt-baas/desafio-dev-api-rest"), implementa uma API para gerenciar contas digitais para clientes da Dock. Com essa API, é possível criar e remover portadores de contas, bem como realizar operações bancárias comuns, como depósitos e saques. 
+Este projeto, que visa resolver esse [desafio](https://github.com/cdt-baas/desafio-dev-api-rest), implementa uma API para gerenciar contas digitais para clientes da Dock. Com essa API, é possível criar e remover portadores de contas, bem como realizar operações bancárias comuns, como depósitos e saques. 
 
 ## Tecnologias
 
