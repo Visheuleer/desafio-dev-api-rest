@@ -17,7 +17,7 @@ Para rodar o projeto, é necessário ter o Docker e o Docker-compose instalados.
 1. Clone o repositório;
 2. Entre na pasta do projeto;
 3. Entre na pasta docker;
-4. Rode o comando `docker-compose --env-file ../.config/.env up`.
+4. Rode o comando `docker-compose --env-file ../.config/.env up`;
 5. Acesse a documentação da API em `http://localhost:8080/docs`.
 
 
